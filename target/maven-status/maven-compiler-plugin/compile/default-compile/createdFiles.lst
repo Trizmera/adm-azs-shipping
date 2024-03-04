@@ -1,0 +1,6 @@
+com\example\domain\port\ClienteRepositoryPort.class
+com\example\domain\service\ClienteService.class
+com\example\App.class
+com\example\domain\model\Cliente.class
+com\example\application\ClienteController.class
+com\example\infrastructure\ClienteRepositoryImpl.class
