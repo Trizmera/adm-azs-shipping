@@ -49,7 +49,7 @@ public class PacoteControllerTest {
     @Test
     public void testGetPacoteById() {
         Long id = 1L;
-        Pacote pacote = new Pacote(id, "Pacote 1", 1.0, 1.0, 1.0, 1.0);
+        Pacote pacote = new Pacote(id, "Pacote 1", 19.0, 10.0, 23.0, 10.0);
 
         when(pacoteService.getPacoteById(id)).thenReturn(pacote);
 

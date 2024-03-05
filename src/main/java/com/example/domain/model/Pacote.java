@@ -52,6 +52,14 @@ public class Pacote {
         this.peso = peso;
     }
 
+    public void calculaPeso() {
+        double totalCubagem = comprimento * largura * altura;
+
+        if (totalCubagem > peso) {
+            this.peso = totalCubagem;
+        }
+    }
+
     public double getComprimento() {
         return comprimento;
     }
