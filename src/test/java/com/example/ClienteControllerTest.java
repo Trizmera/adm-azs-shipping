@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import java.util.ArrayList;
@@ -15,21 +18,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ClienteControllerTest {
-
-    @Mock
-    private ClienteService clienteService;
-
-    @InjectMocks
-    private ClienteController clienteController;
-
-    @BeforeEach
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-    }
+    private ClienteService clienteService = mock(ClienteService.class);
+    private ClienteController clienteController = new ClienteController(clienteService);
 
     @Test
     public void testGetAllClientes() {
@@ -38,22 +31,22 @@ public class ClienteControllerTest {
         clientes.add(new Cliente(1L, "Joao Souza", "123 Rua", "123-456-7890"));
         clientes.add(new Cliente(2L, "Maria Silva", "456 Avenida", "987-654-3210"));
 
+        Page<Cliente> pageClientes = new PageImpl<>(clientes);
 
-        when(clienteService.getAllClientes()).thenReturn(clientes);
+        when(clienteService.getAllClientes(PageRequest.of(0, 10))).thenReturn(pageClientes);
 
-
-        ResponseEntity<List<Cliente>> responseEntity = clienteController.getAllClientes();
-
+        ResponseEntity<Page<Cliente>> responseEntity = clienteController.getAllClientes(0, 10);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
 
+        Page<Cliente> returnedPageClientes = responseEntity.getBody();
+        assertEquals(clientes.size(), returnedPageClientes.getContent().size());
 
-        List<Cliente> returnedClientes = responseEntity.getBody();
-        assertEquals(clientes.size(), returnedClientes.size());
-        assertEquals(clientes.get(0).getId(), returnedClientes.get(0).getId());
-        assertEquals(clientes.get(0).getNome(), returnedClientes.get(0).getNome());
-        assertEquals(clientes.get(0).getEndereco(), returnedClientes.get(0).getEndereco());
-        assertEquals(clientes.get(0).getTelefone(), returnedClientes.get(0).getTelefone());
+        Cliente firstReturnedCliente = returnedPageClientes.getContent().get(0);
+        assertEquals(clientes.get(0).getId(), firstReturnedCliente.getId());
+        assertEquals(clientes.get(0).getNome(), firstReturnedCliente.getNome());
+        assertEquals(clientes.get(0).getEndereco(), firstReturnedCliente.getEndereco());
+        assertEquals(clientes.get(0).getTelefone(), firstReturnedCliente.getTelefone());
     }
 
     @Test

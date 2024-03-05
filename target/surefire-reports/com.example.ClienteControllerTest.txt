@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.example.ClienteControllerTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.834 s -- in com.example.ClienteControllerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.991 s -- in com.example.ClienteControllerTest

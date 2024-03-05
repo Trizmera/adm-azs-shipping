@@ -2,7 +2,9 @@ package com.example.application;
 
 import com.example.domain.model.Cliente;
 import com.example.domain.service.ClienteService;
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,17 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
+    public ClienteController(ClienteService clienteService) {
+        this.clienteService = clienteService;
+    }
+
     @GetMapping
-    public ResponseEntity<List<Cliente>> getAllClientes() {
-        List<Cliente> clientes = clienteService.getAllClientes();
+    public ResponseEntity<Page<Cliente>> getAllClientes(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        Page<Cliente> clientes = clienteService.getAllClientes(pageRequest);
+
         return new ResponseEntity<>(clientes, HttpStatus.OK);
     }
 

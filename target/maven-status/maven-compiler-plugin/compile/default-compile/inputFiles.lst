@@ -1,6 +1,10 @@
 C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\App.java
+C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\application\PacoteController.java
+C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\infrastructure\ClienteRepository.java
 C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\domain\service\ClienteService.java
 C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\application\ClienteController.java
 C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\domain\model\Cliente.java
+C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\domain\model\Pacote.java
 C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\infrastructure\ClienteRepositoryImpl.java
+C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\domain\service\PacoteService.java
 C:\Users\Lenovo\programming\adm-asz-shipping\src\main\java\com\example\domain\port\ClienteRepositoryPort.java
