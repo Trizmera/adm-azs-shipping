@@ -4,7 +4,6 @@ import com.example.domain.model.Cliente;
 import com.example.domain.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,22 +22,26 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public Cliente getClienteById(@PathVariable Long id) {
-        return clienteService.getClienteById(id);
+    public ResponseEntity<Cliente> getClienteById(@PathVariable Long id) {
+        Cliente cliente = clienteService.getClienteById(id);
+        return new ResponseEntity<>(cliente, HttpStatus.OK);
     }
 
     @PostMapping
-    public Cliente createCliente(@RequestBody Cliente cliente) {
-        return clienteService.createCliente(cliente);
+    public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
+        Cliente createdCliente = clienteService.createCliente(cliente);
+        return new ResponseEntity<>(createdCliente, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public Cliente updateCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
-        return clienteService.updateCliente(id, cliente);
+    public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+        Cliente updatedCliente = clienteService.updateCliente(id, cliente);
+        return new ResponseEntity<>(updatedCliente, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCliente(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteCliente(@PathVariable Long id) {
         clienteService.deleteCliente(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

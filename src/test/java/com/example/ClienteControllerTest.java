@@ -64,7 +64,7 @@ public class ClienteControllerTest {
         when(clienteService.updateCliente(eq(id), any(Cliente.class))).thenReturn(clienteToUpdate);
 
 
-        Cliente updatedCliente = clienteController.updateCliente(id, clienteToUpdate);
+        Cliente updatedCliente = clienteController.updateCliente(id, clienteToUpdate).getBody();
 
 
         assertEquals(clienteToUpdate, updatedCliente);
