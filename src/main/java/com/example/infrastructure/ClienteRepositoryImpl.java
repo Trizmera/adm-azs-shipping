@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public class ClienteRepositoryImpl implements ClienteRepositoryPort {
 
-    private final ClienteRepository clienteRepository;
+    private final ClienteRepositoryPort clienteRepository;
 
-    public ClienteRepositoryImpl(ClienteRepository clienteRepository) {
+    public ClienteRepositoryImpl(ClienteRepositoryPort clienteRepository) {
         this.clienteRepository = clienteRepository;
     }
 
