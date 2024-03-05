@@ -28,8 +28,8 @@ public class ClienteControllerTest {
     public void testGetAllClientes() {
 
         List<Cliente> clientes = new ArrayList<>();
-        clientes.add(new Cliente(1L, "Joao Souza", "123 Rua", "123-456-7890"));
-        clientes.add(new Cliente(2L, "Maria Silva", "456 Avenida", "987-654-3210"));
+        clientes.add(new Cliente(1L, "Joao Souza", "123 Rua", "1234567890"));
+        clientes.add(new Cliente(2L, "Maria Silva", "456 Avenida", "9876543210"));
 
         Page<Cliente> pageClientes = new PageImpl<>(clientes);
 
@@ -53,7 +53,7 @@ public class ClienteControllerTest {
     public void testUpdateCliente() {
 
         Long id = 1L;
-        Cliente clienteToUpdate = new Cliente(id, "John Doe", "Address 1", "123456789");
+        Cliente clienteToUpdate = new Cliente(id, "Jorge Santos", "Avenida 1", "123456789");
         when(clienteService.updateCliente(eq(id), any(Cliente.class))).thenReturn(clienteToUpdate);
 
 
